@@ -1,37 +1,21 @@
 public class SimpleCharacterFactory implements CharacterFactory {
+
+    private static WeaponFactory weaponFactory = new SimpleWeaponFactory();
     @Override
-    public Character createCharacter(CharacterType type, String name, WeaponType weapon) {
+    public Character createCharacter(String name, CharacterType characterType, WeaponType weaponType) {
 
-        WeaponBehavior weaponBehavior;
-
-        // Create selected weapon
-        switch(weapon) {
-            case CLUB:
-                weaponBehavior = new Club();
-                break;
-            case SHOTGUN:
-                weaponBehavior = new Shotgun();
-                break;
-            case SWORD:
-                weaponBehavior = new Sword();
-                break;
-            case NONE:
-                weaponBehavior = null;
-                break;
-            default:
-                throw new RuntimeException("Error: " + this.getClass().getName() + " has not yet implemented weapon type " + weapon);
-        }
+        WeaponFactory wFactory = new SimpleWeaponFactory();
 
         // Create selected character type
-        switch(type) {
+        switch(characterType) {
             case KNIGHT:
-                return new Knight(name, weaponBehavior);
+                return new Knight(name, weaponFactory.createWeapon(WeaponType.SWORD));
             case ORCH:
-                return new Orch(name, weaponBehavior);
+                return new Orch(name, weaponFactory.createWeapon(weaponType));
             case TROLL:
-                return new Troll(name, weaponBehavior);
+                return new Troll(name, weaponFactory.createWeapon(weaponType));
             default:
-                throw new RuntimeException("Error: " + this.getClass().getName() + " has not yet implemented character type " + type);
+                throw new RuntimeException("Error: " + this.getClass().getName() + " has not yet implemented character type " + characterType);
         }
     }
 }
