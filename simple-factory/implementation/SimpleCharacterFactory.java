@@ -14,7 +14,10 @@ public class SimpleCharacterFactory implements CharacterFactory {
                 break;
             case SWORD:
                 weaponBehavior = new Sword();
-
+                break;
+            case NONE:
+                weaponBehavior = null;
+                break;
             default:
                 throw new RuntimeException("Error: " + this.getClass().getName() + " has not yet implemented weapon type " + weapon);
         }
