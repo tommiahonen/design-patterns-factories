@@ -1,7 +1,6 @@
-public interface CharacterFactory{
-  public Character createCharacter(CharacterType character,
-                                   WeaponType    weapon,
-                                   String        name);
-  public Character createUnarmedCharacter(CharacterType character,
-                                          String        name);
+public interface CharacterFactory {
+    public Character createCharacter(WeaponType weapon,
+                                     String name);
+
+    public Character createUnarmedCharacter(String name);
 }
